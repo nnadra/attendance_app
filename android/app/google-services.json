@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "514915849292",
+    "project_id": "attendance-app-60d78",
+    "storage_bucket": "attendance-app-60d78.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514915849292:android:fa12933be73dba8219d0e9",
+        "android_client_info": {
+          "package_name": "com.nadra.attadence_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6QIiLBuV1QjekWpVd5UrXJ-3df8_D0vI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
