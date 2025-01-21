@@ -22,40 +22,70 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
            children: [
-
-          Container(
-            margin: const EdgeInsets.all(10),
-            child: Expanded(
-              child: InkWell(
-                highlightColor: Colors.transparent ,
-                splashColor: Colors.transparent,
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const AttendanceScreen()));
-                },
-            child: const Column(
-              children: [
-                Image(
-                  image: AssetImage('/assets/images/ic_attend.png'),
-                  width: 100,
-                  height: 100 , 
-                ),
-                Text(
-                  "Attendance",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold
-                  ),
-                )
-              ],
-            ),
-              )),
+          _buildMenuItem(
+            context, 
+            imagePath: '/assets/image/ic_attend.png', 
+            label: 'Attendance Report', 
+            destination:AttendanceScreen(),
           ),
-          const SizedBox(height: 40,)
+          const SizedBox(height: 40,),
+
+          _buildMenuItem(
+            context, 
+            imagePath: '/assets/image/ic_attendanceHistory.png ', 
+            label: 'Attendance Report', 
+            destination:AttendanceScreen(),
+          ),
+          const SizedBox(height: 40,),
+
+          _buildMenuItem(
+            context, 
+            imagePath: '/assets/image/ic_permission.png', 
+            label: 'Attendance History', 
+            destination:AttendanceScreen(),
+          ),
+          const SizedBox(height: 40,),
            ],
           ),
         ),
       ),
     );
+  }
+
+  Container _buildMenuItem(
+    BuildContext context,{
+      required String imagePath,
+      required String label,
+      required Widget destination,
+    }
+    ) {
+    return Container(
+          margin: const EdgeInsets.all(10),
+          child: Expanded(
+            child: InkWell(
+              highlightColor: Colors.transparent ,
+              splashColor: Colors.transparent,
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>  destination));
+              },
+          child:Column(
+            children: [
+              Image(
+                image: AssetImage(imagePath),
+                width: 100,
+                height: 100 , 
+              ),
+              const Text(
+                "Attendance",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold
+                ),
+              )
+            ],
+          ),
+            )),
+        );
   }
 
 Future<bool> _onWillPop(BuildContext context) async {
@@ -103,6 +133,9 @@ Future<bool> _onWillPop(BuildContext context) async {
       
             )
           )
-        );
+          //ini adalah default value ketika semua kode yang ada di
+          //blok alert dialog tidak tereksekusi karena beberapa hal
+        ) ??
+        false;
       }
     }
