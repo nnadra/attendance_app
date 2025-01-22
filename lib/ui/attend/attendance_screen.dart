@@ -128,13 +128,42 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                     child: FittedBox(
                         child: image != null
                         ?Image.file(File(image!.path), fit:BoxFit.cover)
-                        :Icon(Icons.camera_enhance_outlined)
-                          
+                        :Icon(Icons.camera_enhance_outlined) 
                         ),
                     ),
                   ),
                   ),
               ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: TextField(
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.text,
+                  controller: controller,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                    labelText: "Your Name",
+                    hintText: "Please type your name here",
+                    hintStyle: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
+                    labelStyle: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.pinkAccent )
+                      ),
+
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.pinkAccent)
+                    )
+                  ),
+                ),)
+
           ],
         ),
         
