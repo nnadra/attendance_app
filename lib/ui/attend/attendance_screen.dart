@@ -29,13 +29,13 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   
   @override
   void initstate() {
-    handleLocationPermission();
-    setDataTime();
-    setAttendStatus();
+    // handleLocationPermission();
+    // setDataTime();
+    // setAttendStatus();
 
     if (image != null) {
       isLoading = true;
-      getGeoLocationPosition();
+      // getGeoLocationPosition();
       
     }
   }
@@ -88,7 +88,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   Icon(Icons.face_retouching_natural_outlined),
                   SizedBox(width: 12),
                   Text(
-                    "Please Scan your face!"
+                    "Please Scan your face!",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -135,7 +135,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   ),
               ),
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: TextField(
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.text,
