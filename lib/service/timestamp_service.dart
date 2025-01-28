@@ -1,8 +1,9 @@
 
 
+import 'package:attadence_app/main.dart';
 import 'package:intl/intl.dart';
 
-void setDataTime(Function(String,String, String) onDateTimeset) {
+void setDataTime(Function(String,String,String) onDateTimeset) {
   var dateNow = DateTime.now();
   var dateFormat = DateFormat('dd mm yyyy');
   var dateTime = DateFormat('hh:mm:ss');
@@ -12,4 +13,20 @@ void setDataTime(Function(String,String, String) onDateTimeset) {
   String currentDate = '$date | $time';
 
   onDateTimeset(date, time, currentDate);
+}
+
+void setAttendStatus(Function(String)onStatusSet) {
+  var dateNow = DateTime.now();
+  var hour = int.parse(DateFormat('hh').format(dateNow)); //int.parse = ngubah int jadi string
+  var minute = int.parse(DateFormat('mm').format(dateNow)); 
+
+  String attendanceStatus;
+  if (hour <= 7 || (hour == 7 && minute == 00 )){ // jam 7 kurang atau jam 07.00 pas masuknya attend
+    attendanceStatus = 'Attend'; 
+  } else if (hour > 7 && hour >= 01) { //jam 7 lebih atau 7.01 ke atas di anggap late
+    attendanceStatus = 'Late';
+  } else {
+    attendanceStatus = "Absent"; //kalo ga masuk maka akan keluar Absent
+  }
+
 }
