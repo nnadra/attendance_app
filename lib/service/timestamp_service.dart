@@ -3,6 +3,8 @@
 import 'package:attadence_app/main.dart';
 import 'package:intl/intl.dart';
 
+
+//mangil 
 void setDataTime(Function(String,String,String) onDateTimeset) {
   var dateNow = DateTime.now();
   var dateFormat = DateFormat('dd mm yyyy');
@@ -12,9 +14,10 @@ void setDataTime(Function(String,String,String) onDateTimeset) {
   String time = dateTime.format(dateNow);
   String currentDate = '$date | $time';
 
+  //set tanggal, waktu da
   onDateTimeset(date, time, currentDate);
 }
-
+ //buat var penampung dari data 
 void setAttendStatus(Function(String)onStatusSet) {
   var dateNow = DateTime.now();
   var hour = int.parse(DateFormat('hh').format(dateNow)); //int.parse = ngubah int jadi string
@@ -28,5 +31,5 @@ void setAttendStatus(Function(String)onStatusSet) {
   } else {
     attendanceStatus = "Absent"; //kalo ga masuk maka akan keluar Absent
   }
-
+onStatusSet(attendanceStatus);
 }
