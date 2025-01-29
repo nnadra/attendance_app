@@ -1,174 +1,61 @@
-import 'dart:io';
-
-import 'package:attadence_app/ui/attend/camera_screen.dart';
+import 'package:attadence_app/service/location_service.dart';
+import 'package:attadence_app/service/timestamp_service.dart';
 import 'package:camera/camera.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
 class AttendanceScreen extends StatefulWidget {
   final XFile? image;
 
-
-  const AttendanceScreen({super.key, required this.image});
-
-  @override
-  State<AttendanceScreen> createState() => _AttendanceScreenState(this.image);
-}
-
-class _AttendanceScreenState extends State<AttendanceScreen> {
-  _AttendanceScreenState(this.image);
-
-  XFile? image;
-  String strAddress = "", date = "", time = "", dateTime = "", status = "Attend";
-  bool isLoading = false;
-  double lat = 0.0, long = 0.0;
-  int dateHours = 0, minute = 0;
-  final controller = TextEditingController();
-  final CollectionReference dataCollection = FirebaseFirestore.instance.collection('attendance');
+  const AttendanceScreen({super.key, this.image});
   
   @override
-  void initstate() {
-    // handleLocationPermission();
-    // setDataTime();
-    // setAttendStatus();
+  State<AttendanceScreen> createState() => _AttendanceScreenState();
+}
 
+
+class _AttendanceScreenState extends State<AttendanceScreen> {
+  XFile? image;
+  String addressPlaceholder = '', datePlaceholder = '', timePlaceholder = '', timeStampPlaceholder = '', statusPlaceholder = 'Attend';
+  bool isLoading = false;
+  final controllerName = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    handleLocationPermission(context);
+    setDataTime((date,time,timeStamp){
+      setState(() {
+        date = datePlaceholder;
+        time = timePlaceholder;
+        timeStamp = timeStampPlaceholder;
+      });
+    });
+    setAttendStatus((status){
+      setState(() {
+        statusPlaceholder = status;
+      });
+    });
     if (image != null) {
-      isLoading = true;
-      // getGeoLocationPosition();
+     isLoading = true;
+     getGeoLocationPosition(context, (position){
+      setState(() {
+        isLoading = false;
+        getAddressFromLongLat(position, (address) {
+          setState(() {
+            addressPlaceholder = address;
+          });
+        });
+      });
+     });
       
     }
   }
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
-    return Scaffold(
+    Size size = MediaQuery.of(context).size; //u mendapatkan size yg sedang digunakan
+    return const Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: const Color.fromARGB(255, 255, 163, 193),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pop(), 
-          ),
-        title: Text(
-          "Attendance Report",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.white
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Card(
-          color: Colors.white,
-          margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-          shape: RoundedRectangleBorder(
-              borderRadius:  BorderRadius.circular(10),
-          ),
-
-          elevation: 5,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10)
-                ),
-                color: Colors.pinkAccent
-              ),
-              child: Row(
-                children: [
-                  SizedBox(width: 12),
-                  Icon(Icons.face_retouching_natural_outlined),
-                  SizedBox(width: 12),
-                  Text(
-                    "Please Scan your face!",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(10, 20, 0, 20),
-              child: Text(
-                "Capture Image",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (context) => CameraScreen())
-                );
-              },
-              child: Container(
-                margin: EdgeInsets.fromLTRB(10, 0, 10, 20),
-                width: size.width,
-                height: size.height,
-                child: DottedBorder(
-                  radius: Radius.circular(10),
-                  borderType: BorderType.RRect,
-                  color: Colors.pinkAccent,
-                  strokeWidth: 1 ,
-                  dashPattern: [5,5],
-                  child:SizedBox.expand(
-                    child: FittedBox(
-                        child: image != null
-                        ?Image.file(File(image!.path), fit:BoxFit.cover)
-                        :Icon(Icons.camera_enhance_outlined) 
-                        ),
-                    ),
-                  ),
-                  ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: TextField(
-                  textInputAction: TextInputAction.done,
-                  keyboardType: TextInputType.text,
-                  controller: controller,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    labelText: "Your Name",
-                    hintText: "Please type your name here",
-                    hintStyle: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                    ),
-                    labelStyle: TextStyle(
-                      fontSize: 14,
-                      color: Colors.black
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.pinkAccent )
-                      ),
-
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.pinkAccent)
-                    )
-                  ),
-                ),)
-
-          ],
-        ),
-        
-        )
-      ),
+      appBar: ,
     );
   }
 }
