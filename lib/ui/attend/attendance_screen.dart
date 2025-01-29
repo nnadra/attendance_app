@@ -55,7 +55,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     Size size = MediaQuery.of(context).size; //u mendapatkan size yg sedang digunakan
     return const Scaffold(
       backgroundColor: Colors.white,
-      appBar: ,
+      // appBar: Appb ,
     );
   }
 }
