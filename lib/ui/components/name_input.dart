@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+
+Padding buildNameInputField(TextEditingController controllerName) {
+  return Padding(
+    padding: EdgeInsets.all(10),
+    child: TextField(
+      textInputAction: TextInputAction.done,
+      keyboardAppearance: TextInputType.text,
+      controller: controllerName,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+        labelText: "Your Name",
+        labelStyle: TextStyle(
+          fontSize: 14,
+          color: Colors.blueAccent
+        ),
+        hintText: "Please enter yo",
+        hintStyle: TextStyle(
+          fontSize: 14,
+          color: Colors.grey
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.blueAccent)
+        )
+      ),
+    ),);
+}
