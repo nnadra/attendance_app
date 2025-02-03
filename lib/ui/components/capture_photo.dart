@@ -38,7 +38,7 @@ Padding buildCapturePhotoSection(BuildContext context, Size size, XFile? image) 
               dashPattern: [5,5],
               child: SizedBox.expand(
                 child: FittedBox(
-                  child: image != null,
+                  child: image != null
                   ? Image.file(File(image.path), fit: BoxFit.cover)
                   : Icon(
                     Icons.camera_enhance_outlined,
