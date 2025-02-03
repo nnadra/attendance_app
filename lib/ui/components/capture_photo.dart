@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:attadence_app/ui/attend/camera_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -34,7 +36,6 @@ Padding buildCapturePhotoSection(BuildContext context, Size size, XFile? image) 
               color: Colors.blueAccent,
               strokeWidth: 1,
               dashPattern: [5,5],
-
               child: SizedBox.expand(
                 child: FittedBox(
                   child: image != null,
@@ -43,10 +44,12 @@ Padding buildCapturePhotoSection(BuildContext context, Size size, XFile? image) 
                     Icons.camera_enhance_outlined,
                     color: Colors.blueAccent,
                   )
-                ))
+                )
+              ),
             )
           ),
         )
       ],
-    ),);
+    ),
+  );
 }

@@ -5,7 +5,7 @@ Padding buildNameInputField(TextEditingController controllerName) {
     padding: EdgeInsets.all(10),
     child: TextField(
       textInputAction: TextInputAction.done,
-      keyboardAppearance: TextInputType.text,
+      keyboardType: TextInputType.text,
       controller: controllerName,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 10),
