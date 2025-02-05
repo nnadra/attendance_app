@@ -22,7 +22,7 @@ class SnackBarComponent {
         ],
       ),
       backgroundColor: isError? Colors.red : Colors.grey ,
-      shape: StadiumBorder(),
+      shape: const StadiumBorder(),
       behavior: SnackBarBehavior.floating,
       )
       );
