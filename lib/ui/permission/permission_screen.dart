@@ -1,4 +1,6 @@
+import 'package:attadence_app/service/location_service.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 class PermissionScreen extends StatefulWidget {
   const PermissionScreen({super.key});
@@ -13,7 +15,14 @@ class _PermissionScreenState extends State<PermissionScreen> {
     return const Placeholder();
   }
 
-  void requestPermission() {
-    
+  void requestPermission() async {
+    //lokasi detail untuk permission
+    final hasPermission = await handleLocationPermission(context);
+    //TODO: UNTIL HERE XIXI
+    // try {
+      
+    // } catch (e) {
+      
+    // }
   }
 }
