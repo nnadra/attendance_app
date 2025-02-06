@@ -1,4 +1,5 @@
 import 'package:attadence_app/service/location_service.dart';
+import 'package:attadence_app/ui/components/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -16,7 +17,7 @@ class _PermissionScreenState extends State<PermissionScreen> {
     
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: // bikin appbar method,
+      appBar:buildAppBar(context), // bikin appbar method,
       body: SingleChildScrollView(
         child: Card(
           color: Colors.white,

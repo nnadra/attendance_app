@@ -13,7 +13,8 @@ AppBar buildAppBar(BuildContext context) {
       "Permission Request Menu",
       style: TextStyle(
         fontSize: 18,
-        fontWeight: FontWeight.bold
+        fontWeight: FontWeight.bold,
+        color: Colors.white
       ),
     ),
   );
