@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class FormHeader {
+class FormHeader extends StatelessWidget {
   final String title;
   final IconData icon;
 
-  FormHeader({required this.title, required this.icon});
+  const FormHeader({super.key, required this.title, required this.icon});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+       return Container(
       height: 50,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
