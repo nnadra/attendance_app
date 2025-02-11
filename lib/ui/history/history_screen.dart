@@ -1,9 +1,11 @@
 import 'package:attadence_app/service/data_service.dart';
+import 'package:attadence_app/ui/history/components/attendance_card.dart';
+import 'package:attadence_app/ui/history/components/delete_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class _AttencaceHistoryScreenState extends StatefulWidget {
-  const _AttencaceHistoryScreenState({super.key});
+  const _AttencaceHistoryScreenState({super.key, required Null Function() onConfirm});
 
   @override
   State<_AttencaceHistoryScreenState> createState() => __AttencaceHistoryScreenStateState();
@@ -33,7 +35,29 @@ class __AttencaceHistoryScreenStateState extends State<_AttencaceHistoryScreenSt
           return ListView.builder(
             itemCount: data.length, //data.lenght = jumlah datanya berapa? tergantung di isi apa sama user
             itemBuilder: (context, index) {
-              //TODO: put attendance card UI here
+              return AttendanceHistoryCard(
+                //u mendefinisakan data yang akan muncul di UI berdasarkan index/posisi yang ada di database
+                data: data[index].data() as Map<String, dynamic>,
+                onDelete: () {
+                  showAboutDialog(
+                    context: context,
+                  builder: (context) => DeleteDialog(
+                    //Untuk menjadikan index sebagai id dari data yang ada di database
+                    documentId:data[index].id,
+                    dataCollection: dataService.dataCollection,
+                    //digunakan u memperbarui state setelah terjadi penghapusan data dari database
+                    onConfirm: () {
+                      setState(() {
+                        dataService.deleteData(data[index].id);
+                        Navigator.pop(context);
+                      });
+                    }
+                    //belum 
+                  )
+
+                  );
+                },
+              );
             }
           );
        },
