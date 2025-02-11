@@ -1,6 +1,5 @@
 import 'package:attadence_app/ui/permission/components/snack_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 
 class ErrorHandler {
   static void handleError(BuildContext context, dynamic error) {
@@ -30,5 +29,5 @@ class ErrorHandler {
     PermissionDeniedException([this.message = 'Permission']);
 
     @override
-    String toSting()=> message.isEmpty ? "Permission Denied" : message;
+    String toString()=> message.isEmpty ? "Permission Denied" : message;
   }

@@ -41,7 +41,7 @@ class __AttencaceHistoryScreenStateState extends State<_AttencaceHistoryScreenSt
                 onDelete: () {
                   showAboutDialog(
                     context: context,
-                  builder: (context) => DeleteDialog(
+                  builder: (context) => DeleteDialog( //belum masi error
                     //Untuk menjadikan index sebagai id dari data yang ada di database
                     documentId:data[index].id,
                     dataCollection: dataService.dataCollection,
@@ -52,7 +52,6 @@ class __AttencaceHistoryScreenStateState extends State<_AttencaceHistoryScreenSt
                         Navigator.pop(context);
                       });
                     }
-                    //belum 
                   )
 
                   );
@@ -65,3 +64,5 @@ class __AttencaceHistoryScreenStateState extends State<_AttencaceHistoryScreenSt
     );
   }
 }
+
+// changging the on confirmation paramater become 
