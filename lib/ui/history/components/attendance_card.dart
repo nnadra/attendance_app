@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 class AttendanceHistoryCard extends StatelessWidget {
   final Map <String, dynamic> data;
   final VoidCallback onDelete;
+  
 
   const AttendanceHistoryCard({super.key, required this.data, required this.onDelete});
 
@@ -17,6 +18,9 @@ class AttendanceHistoryCard extends StatelessWidget {
         DeleteDialog(
           documentId: data["id"],
           dataCollection: FirebaseFirestore.instance.collection('attendance'),
+          onConfirm: () {
+
+          }
           );
       },
       child: Card(

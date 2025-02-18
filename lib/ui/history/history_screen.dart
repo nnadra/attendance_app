@@ -39,7 +39,7 @@ class __AttencaceHistoryScreenStateState extends State<_AttencaceHistoryScreenSt
                 //u mendefinisakan data yang akan muncul di UI berdasarkan index/posisi yang ada di database
                 data: data[index].data() as Map<String, dynamic>,
                 onDelete: () {
-                  showAboutDialog(
+                  showDialog(
                     context: context,
                   builder: (context) => DeleteDialog( //belum masi error
                     //Untuk menjadikan index sebagai id dari data yang ada di database

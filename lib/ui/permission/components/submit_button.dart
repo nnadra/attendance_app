@@ -54,7 +54,7 @@ class SubmitButton extends StatelessWidget {
     }
 
     void _showSnackBar(BuildContext context,String message, IconData icon ,Color color){
-      ScaffoldMessenger.of(content).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Row(
           children: [
             Icon(
@@ -73,13 +73,27 @@ class SubmitButton extends StatelessWidget {
         shape: StadiumBorder(),
         behavior: SnackBarBehavior.floating,
       ));
+    }
 
     void _showLoaderDialog(BuildContext context) {
-      showDialog(
-        context: context, 
-        barrierDismissible: false,
-        builder: (BuildContext context)
+     showDialog(
+      context: context, 
+      barrierDismissible: false,
+      builder: (BuildContext context){
+        return AlertDialog(
+          content: Row(
+            children: [
+                CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blueAccent),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 20),
+                  child: Text("Please Wait")
+                )
+            ],
+          ),
         );
+      });
     }
 
     Future<void> _submitForm(BuildContext context) async {
@@ -115,5 +129,4 @@ class SubmitButton extends StatelessWidget {
         
       }
     }
-}
 }
